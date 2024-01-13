@@ -30,7 +30,8 @@
   },
   "lint-staged": {
     "**/*.{ts,tsx}": [
-      "eslint --fix"
+      "eslint --fix",
+      "pretter --config ./.prettierrc --write -u"
     ]
   },
   "eslintConfig": {
