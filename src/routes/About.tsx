@@ -1,36 +1,36 @@
-import React from 'react'
-import {GoogleMap, useJsApiLoader, Marker} from '@react-google-maps/api'
-import {useMemo} from 'react'
+import React from 'react';
+import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api';
+import { useMemo } from 'react';
 
 const containerStyle = {
-  width: "100%",
-  height: "100vh"
+  width: '100%',
+  height: '100vh',
 };
 
 const OPTIONS = {
   minZoom: 4,
   maxZoom: 18,
-}
+};
 
 function About() {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY
-  })
-  const center = useMemo(() => ({lat: 37, lng: 127}), [])
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY ?? '',
+  });
+  const center = useMemo(() => ({ lat: 37, lng: 127 }), []);
 
-  const [map, setMap] = React.useState(null)
+  const [map, setMap] = React.useState(null);
 
   const onLoad = React.useCallback(function callback(map: any) {
     const bounds = new window.google.maps.LatLngBounds(center);
     map.fitBounds(bounds);
 
-    setMap(map)
-  }, [])
+    setMap(map);
+  }, []);
 
   const onUnmount = React.useCallback(function callback(map: any) {
-    setMap(null)
-  }, [])
+    setMap(null);
+  }, []);
 
   return isLoaded ? (
     <GoogleMap
@@ -42,7 +42,9 @@ function About() {
     >
       <Marker position={center}></Marker>
     </GoogleMap>
-  ) : <></>
+  ) : (
+    <></>
+  );
 }
 
 export default About;
