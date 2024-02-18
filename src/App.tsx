@@ -8,14 +8,17 @@ import * as React from 'react';
 import { RecoilRoot } from 'recoil';
 import RecoilTest from './routes/RecoilTest';
 import SignUp from './routes/SignUp';
+import ProtectedRoute from './routes/ProtectedRoute';
 
 function App() {
   return (
     <RecoilRoot>
       <div className="App">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+          </Route>
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/recoil-test" element={<RecoilTest />} />

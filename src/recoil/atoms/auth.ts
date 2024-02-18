@@ -13,6 +13,7 @@ export const userState = atom({
 });
 
 export const isLoggedInState = atom<boolean>({
+  // todo: 토큰을 통해서 user 정보를 가져오는 로직 추가
   key: 'isLoggedIn',
   default: !!localStorage.getItem('token'),
 });
