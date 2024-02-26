@@ -13,12 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useSetRecoilState } from 'recoil';
-import {
-  login,
-  signup,
-  userState,
-  isLoggedInState,
-} from '../recoil/atoms/auth';
+import { signup, userState, isLoggedInState } from '../recoil/atoms/auth';
 import { useNavigate } from 'react-router-dom';
 
 const defaultTheme = createTheme();
@@ -120,7 +115,7 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/sign-in" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>
