@@ -1,12 +1,6 @@
 import { atom } from 'recoil';
 import { customAxios } from '../../lib/customAxios';
 
-interface User {
-  username: string;
-  email: string;
-  token?: string;
-}
-
 export const userState = atom({
   key: 'user',
   default: { username: '', email: '' },

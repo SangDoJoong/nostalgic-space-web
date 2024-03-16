@@ -33,7 +33,6 @@ export default function SignIn() {
       email: data.get('email') as string,
       password: data.get('password') as string,
     };
-    console.log(signInUser);
     const loginUser = await login(signInUser);
     setUser(loginUser);
     setIsLoggedIn(true);
