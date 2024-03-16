@@ -6,7 +6,6 @@ import SignIn from './routes/SignIn';
 import Copyright from './Components/Copyright';
 import * as React from 'react';
 import { RecoilRoot } from 'recoil';
-import RecoilTest from './routes/RecoilTest';
 import SignUp from './routes/SignUp';
 import ProtectedRoute from './routes/ProtectedRoute';
 
@@ -21,7 +20,6 @@ function App() {
           </Route>
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/recoil-test" element={<RecoilTest />} />
           <Route path="*" element={<h1>Not Found</h1>} />
         </Routes>
 

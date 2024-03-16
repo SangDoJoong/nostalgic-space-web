@@ -32,7 +32,6 @@ export default function SignUp() {
       email: data.get('email') as string,
       password: data.get('password') as string,
     };
-    console.log(signUpUser);
     const loginUser = await signup(signUpUser);
     setUser(loginUser);
     setIsLoggedIn(true);
