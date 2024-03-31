@@ -3,20 +3,24 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './routes/Home';
 import About from './routes/About';
 import SignIn from './routes/SignIn';
+import SignUp from './routes/SignUp';
+import ProtectedRoute from './routes/ProtectedRoute';
 import Main from 'src/pages/main';
 import { RecoilRoot } from 'recoil';
-import RecoilTest from './routes/RecoilTest';
+import * as React from 'react';
 
 function App() {
   return (
     <RecoilRoot>
       <div className="App">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/view" element={<Main />} />
-          <Route path="/about" element={<About />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/view" element={<Main />} />
+            <Route path="/about" element={<About />} />
+          </Route>
           <Route path="/sign-in" element={<SignIn />} />
-          <Route path="/recoil-test" element={<RecoilTest />} />
+          <Route path="/sign-up" element={<SignUp />} />
           <Route path="*" element={<h1>Not Found</h1>} />
         </Routes>
       </div>
