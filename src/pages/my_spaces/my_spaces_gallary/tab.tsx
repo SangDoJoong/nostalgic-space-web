@@ -1,13 +1,43 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import { Box, Icon } from '@mui/material';
+
+const GalleryTab = styled.ul`
+  display: flex;
+  list-style: none;
+  align-items: center;
+  padding: 0 16px;
+
+  .tabmenu {
+    // tab style
+    display: flex;
+    justify-content: space-evenly;
+    width: calc(100% / 3);
+  }
+
+  .MuiBox-root {
+    width: 100%;
+    padding: 8px 0;
+  }
+
+  .focused {
+    // 선택된 tab style
+    .MuiBox-root {
+      border-color: rgb(0, 0, 0);
+      border-bottom-style: solid;
+      font-weight: bold;
+      height: 100%;
+    }
+  }
+`;
 
 const Tab = (): JSX.Element => {
   const [currentTab, clickTab] = useState(0);
 
   const tabMenuArr = [
-    { name: 'images', content: 'Images' },
-    { name: 'map', content: 'map' },
-    { name: 'setting', content: 'Settings' },
+    { name: 'image', content: 'Images' },
+    { name: 'map', content: 'Map' },
+    { name: 'settings', content: 'Settings' },
   ];
 
   const selectTabMenuHandler = (idx: number) => {
@@ -15,19 +45,29 @@ const Tab = (): JSX.Element => {
   };
 
   return (
-    <div>
-      {tabMenuArr.map((elem, idx) => (
-        <li
-          className={idx === currentTab ? 'submenu focused' : 'submenu'}
-          onClick={() => selectTabMenuHandler(idx)}
-        >
-          {elem.name}
-        </li>
-      ))}
-      <div>
-        <p>{tabMenuArr[currentTab].content}</p>
-      </div>
-    </div>
+    <>
+      <GalleryTab>
+        {tabMenuArr.map((elem, idx) => (
+          <li
+            className={idx === currentTab ? 'tabmenu focused' : 'tabmenu'}
+            onClick={() => selectTabMenuHandler(idx)}
+          >
+            <Box>
+              <span
+                className={
+                  idx === currentTab
+                    ? 'material-icons'
+                    : 'material-icons-outlined'
+                }
+              >
+                {elem.name}
+              </span>
+            </Box>
+          </li>
+        ))}
+      </GalleryTab>
+      <p>{tabMenuArr[currentTab].content}</p>
+    </>
   );
 };
 
