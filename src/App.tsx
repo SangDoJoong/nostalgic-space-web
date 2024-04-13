@@ -6,6 +6,7 @@ import SignIn from './routes/SignIn';
 import SignUp from './routes/SignUp';
 import ProtectedRoute from './routes/ProtectedRoute';
 import Main from 'src/pages/main';
+import MySpace from 'src/pages/my_spaces';
 import { RecoilRoot } from 'recoil';
 import * as React from 'react';
 
@@ -18,6 +19,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/view" element={<Main />} />
             <Route path="/about" element={<About />} />
+            <Route path="/my" element={<MySpace />} />
           </Route>
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />

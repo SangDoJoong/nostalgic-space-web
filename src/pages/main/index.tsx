@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import Header from 'src/pages/main/header';
+import Header from 'src/pages/components/Header';
 import MapViewer from 'src/pages/main/map_viewer';
 
 const MainView = styled.div`
