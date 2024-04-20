@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import { WebPageTitle } from 'src/constants/constants';
 
@@ -42,8 +43,12 @@ const Header = (): JSX.Element => {
         <NostalgicTitle>{WebPageTitle}</NostalgicTitle>
         <NostalgicNavigator>
           <ul>
-            <li>WORLDS</li>
-            <li>MY SPACES</li>
+            <li>
+              <Link to="/view">WORLDS</Link>
+            </li>
+            <li>
+              <Link to="/my">MY SPACES</Link>
+            </li>
           </ul>
         </NostalgicNavigator>
       </NostalgicHeaderContent>

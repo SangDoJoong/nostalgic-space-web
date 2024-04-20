@@ -18,7 +18,7 @@ const MapViewer = (): JSX.Element => {
     id: 'google-map-script',
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY ?? '',
   });
-  const center = useMemo(() => ({ lat: 37, lng: 127 }), []);
+  const center = useMemo(() => ({ lat: 37.2543442, lng: 127.0407873 }), []);
 
   const [map, setMap] = React.useState(null);
 
