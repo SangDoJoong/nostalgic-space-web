@@ -1,5 +1,5 @@
 import { atom } from 'recoil';
-import { customAxios } from '../../lib/customAxios';
+import { customAxios } from 'src/lib/customAxios';
 
 export const userState = atom({
   key: 'user',

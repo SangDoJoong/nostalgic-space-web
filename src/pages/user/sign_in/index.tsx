@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useSetRecoilState } from 'recoil';
-import { isLoggedInState, login, userState } from '../../../recoil/atoms/auth';
+import { isLoggedInState, login, userState } from 'src/recoil/atoms/auth';
 import { useNavigate } from 'react-router-dom';
 
 const defaultTheme = createTheme();
@@ -102,7 +102,7 @@ export default function SignIn() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="/sign-up" variant="body2">
+                <Link href="/user/sign-up" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
