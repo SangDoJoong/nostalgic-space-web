@@ -13,26 +13,27 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useSetRecoilState } from 'recoil';
-import { signup, userState, isLoggedInState } from '../recoil/atoms/auth';
+import { isLoggedInState, login, userState } from '../../../recoil/atoms/auth';
 import { useNavigate } from 'react-router-dom';
 
 const defaultTheme = createTheme();
 
-export default function SignUp() {
-  // state
+export default function SignIn() {
   const setUser = useSetRecoilState(userState);
   const setIsLoggedIn = useSetRecoilState(isLoggedInState);
 
   const navigate = useNavigate();
-  const signUpSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const loginSubmit = async (event: {
+    preventDefault: () => void;
+    currentTarget: HTMLFormElement | undefined;
+  }) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const signUpUser = {
-      username: data.get('username') as string,
+    const signInUser = {
       email: data.get('email') as string,
       password: data.get('password') as string,
     };
-    const loginUser = await signup(signUpUser);
+    const loginUser = await login(signInUser);
     setUser(loginUser);
     setIsLoggedIn(true);
     navigate('/');
@@ -54,68 +55,55 @@ export default function SignUp() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+            Sign in
           </Typography>
           <Box
             component="form"
+            onSubmit={loginSubmit}
             noValidate
-            onSubmit={signUpSubmit}
-            sx={{ mt: 3 }}
+            sx={{ mt: 1 }}
           >
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <TextField
-                  autoComplete="given-name"
-                  name="username"
-                  required
-                  fullWidth
-                  id="username"
-                  label="username"
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={
-                    <Checkbox value="allowExtraEmails" color="primary" />
-                  }
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                />
-              </Grid>
-            </Grid>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              Sign In
             </Button>
-            <Grid container justifyContent="flex-end">
+            <Grid container>
+              <Grid item xs>
+                <Link href="#" variant="body2">
+                  Forgot password?
+                </Link>
+              </Grid>
               <Grid item>
-                <Link href="/sign-in" variant="body2">
-                  Already have an account? Sign in
+                <Link href="/sign-up" variant="body2">
+                  {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
             </Grid>
