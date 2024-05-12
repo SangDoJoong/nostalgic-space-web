@@ -1,6 +1,6 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { isLoggedInState } from '../recoil/atoms/auth';
+import { isLoggedInState } from '../../recoil/atoms/auth';
 
 const ProtectedRoute = () => {
   const isLogin = useRecoilValue(isLoggedInState);
