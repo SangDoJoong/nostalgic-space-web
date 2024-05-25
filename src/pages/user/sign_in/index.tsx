@@ -13,7 +13,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useSetRecoilState } from 'recoil';
-import { isLoggedInState, login, userState } from 'src/recoil/atoms/auth';
+import { isLoggedInState, userState } from 'src/recoil/atoms/auth';
+import { signIn } from 'src/utils/auth';
 import { useNavigate } from 'react-router-dom';
 
 const defaultTheme = createTheme();
@@ -30,11 +31,11 @@ export default function SignIn() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const signInUser = {
-      email: data.get('email') as string,
+      username: data.get('username') as string,
       password: data.get('password') as string,
     };
-    const loginUser = await login(signInUser);
-    setUser(loginUser);
+    const user = await signIn(signInUser);
+    setUser(user);
     setIsLoggedIn(true);
     navigate('/');
   };
@@ -67,10 +68,10 @@ export default function SignIn() {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="username"
+              label="Username"
+              name="username"
+              autoComplete="username"
               autoFocus
             />
             <TextField

@@ -1,9 +1,10 @@
 import { atom } from 'recoil';
-import { customAxios } from 'src/lib/customAxios';
+import { customAxios } from '../../lib/customAxios';
+import { User } from 'src/inferfaces';
 
-export const userState = atom({
+export const userState = atom<User>({
   key: 'user',
-  default: { username: '', email: '' },
+  default: { username: '' },
 });
 
 export const isLoggedInState = atom<boolean>({
@@ -11,25 +12,6 @@ export const isLoggedInState = atom<boolean>({
   key: 'isLoggedIn',
   default: !!localStorage.getItem('token'),
 });
-
-export const login = async (formData: { email: string; password: string }) => {
-  // todo: 실패했을 때 처리
-  //const response = await customAxios.post("/auth/login", formData);
-  // todo: username 수정
-  const response = {
-    data: {
-      username: 'test',
-      email: formData.email,
-      token: '1234',
-    },
-  };
-  const { username, email, token } = response.data;
-
-  // todo: token 수정
-  localStorage.setItem('token', token); // 로컬 스토리지에 토큰 저장
-
-  return { username, email, token };
-};
 
 export const signup = async (formData: {
   username: string;
