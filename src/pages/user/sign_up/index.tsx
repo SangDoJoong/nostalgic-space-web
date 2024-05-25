@@ -13,14 +13,14 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useSetRecoilState } from 'recoil';
-import { signup, userState, isLoggedInState } from 'src/recoil/atoms/auth';
+import { isLoggedInState } from 'src/recoil/atoms/auth';
 import { useNavigate } from 'react-router-dom';
+import { signup } from 'src/utils/auth';
 
 const defaultTheme = createTheme();
 
 export default function SignUp() {
   // state
-  const setUser = useSetRecoilState(userState);
   const setIsLoggedIn = useSetRecoilState(isLoggedInState);
 
   const navigate = useNavigate();
@@ -28,14 +28,13 @@ export default function SignUp() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const signUpUser = {
-      username: data.get('username') as string,
-      email: data.get('email') as string,
-      password: data.get('password') as string,
+      name: data.get('name') as string,
+      password: data.get('password1') as string,
+      password2: data.get('password2') as string,
     };
-    const loginUser = await signup(signUpUser);
-    setUser(loginUser);
-    setIsLoggedIn(true);
-    navigate('/');
+    await signup(signUpUser);
+    setIsLoggedIn(false);
+    navigate('/user/sign-in');
   };
 
   return (
@@ -66,11 +65,11 @@ export default function SignUp() {
               <Grid item xs={12}>
                 <TextField
                   autoComplete="given-name"
-                  name="username"
+                  name="name"
                   required
                   fullWidth
-                  id="username"
-                  label="username"
+                  id="name"
+                  label="name"
                   autoFocus
                 />
               </Grid>
@@ -78,20 +77,21 @@ export default function SignUp() {
                 <TextField
                   required
                   fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
+                  name="password1"
+                  label="Password"
+                  type="password"
+                  id="password1"
+                  autoComplete="new-password"
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
-                  name="password"
-                  label="Password"
+                  name="password2"
+                  label="confirm password"
                   type="password"
-                  id="password"
+                  id="password2"
                   autoComplete="new-password"
                 />
               </Grid>
