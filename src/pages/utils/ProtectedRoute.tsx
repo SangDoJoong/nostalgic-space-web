@@ -10,7 +10,7 @@ const ProtectedRoute = () => {
     <Outlet />
   ) : (
     <Navigate
-      to={'/sign-in'}
+      to={'/user/sign-in'}
       replace
       state={{ from: currentLocation.pathname }}
     />
