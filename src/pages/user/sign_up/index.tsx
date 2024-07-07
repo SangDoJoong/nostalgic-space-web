@@ -28,7 +28,7 @@ export default function SignUp() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const signUpUser = {
-      name: data.get('name') as string,
+      username: data.get('username') as string,
       password: data.get('password1') as string,
       password2: data.get('password2') as string,
     };
@@ -65,11 +65,11 @@ export default function SignUp() {
               <Grid item xs={12}>
                 <TextField
                   autoComplete="given-name"
-                  name="name"
+                  name="username"
                   required
                   fullWidth
-                  id="name"
-                  label="name"
+                  id="username"
+                  label="username"
                   autoFocus
                 />
               </Grid>

@@ -16,9 +16,13 @@ export const signIn = async (formData: {
 };
 
 export const signup = async (formData: {
-  name: string;
+  username: string;
   password: string;
   password2: string;
 }) => {
-  return await signUpUser(formData.name, formData.password, formData.password2);
+  return await signUpUser(
+    formData.username,
+    formData.password,
+    formData.password2,
+  );
 };
